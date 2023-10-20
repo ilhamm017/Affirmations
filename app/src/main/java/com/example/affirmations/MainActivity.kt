@@ -46,17 +46,17 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun AffirmationsApp() {
-    AffirmationList(
+fun AffirmationsApp() { //fungsi afirmasi yang akan menampilkan list
+    AffirmationList( //Memanggil fungsi AffirmationList
         affirmationList = Datasource().loadAffirmations(),
     )
 }
 
 @Composable
-fun AffirmationList(affirmationList: List<Affirmation>, modifier: Modifier = Modifier) {
-    LazyColumn(modifier = modifier) {
+fun AffirmationList(affirmationList: List<Affirmation>, modifier: Modifier = Modifier) { //Fungsi affirmationList yang memuat model List
+    LazyColumn(modifier = modifier) { //ditampilkan dengan LazyCollumn
         items(affirmationList) { affirmation ->
-            AffirmationCard(
+            AffirmationCard( //Memanggil fungsi AffirmationCard yang akan membungkus list afirmasi
                 affirmation = affirmation,
                 modifier = Modifier.padding(8.dp)
             )
@@ -65,10 +65,10 @@ fun AffirmationList(affirmationList: List<Affirmation>, modifier: Modifier = Mod
 }
 
 @Composable
-fun AffirmationCard(affirmation: Affirmation, modifier: Modifier = Modifier) {
+fun AffirmationCard(affirmation: Affirmation, modifier: Modifier = Modifier) { //Fungsi affirmationCard yang akan menampilkan affirmasi dalam bentuk card
     Card(modifier = modifier) {
-        Column {
-            Image(
+        Column {//ditampilkan dalam format column
+            Image( //Menampilkan gambar
                 painter = painterResource(affirmation.imageResourceId),
                 contentDescription = stringResource(affirmation.stringResourceId),
                 modifier = Modifier
@@ -76,7 +76,7 @@ fun AffirmationCard(affirmation: Affirmation, modifier: Modifier = Modifier) {
                     .height(194.dp),
                 contentScale = ContentScale.Crop
             )
-            Text(
+            Text( //Menampilkan text
                 text = LocalContext.current.getString(affirmation.stringResourceId),
                 modifier = Modifier.padding(16.dp),
                 style = MaterialTheme.typography.headlineSmall
